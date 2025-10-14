@@ -7,7 +7,7 @@ import multiprocessing
 import sys
 
 def main():
-    """Función principal para descargar datos climáticos de NASA POWER para Campeche"""
+    """Función principal para descargar datos climáticos de NASA POWER para Colima"""
     
     # Configurar multiprocessing para macOS
     if sys.platform == 'darwin':
@@ -25,15 +25,15 @@ def main():
     x['edo'] = x['CVEGEO'].astype(str).str[:-3]
     print(f"Total de registros: {len(x)}")
     
-    print("Step 3: Extrayendo estado de Campeche...")
-    x = x[(x['edo'] == "04")]
-    print(f"Registros para Campeche: {len(x)}")
+    print("Step 3: Extrayendo estado de colima...")
+    x = x[(x['edo'] == "06")]
+    print(f"Registros para Colima: {len(x)}")
     
     print("Step 4: Limpiando datos...")
     x = x.drop(["edo"], axis=1)
     
-    print("Step 5: Descargando datos climáticos para Aguascalientes...")
-    path_data = "/Users/fdzul/Library/CloudStorage/Dropbox/dataset/nasa_power/climex_download/data/prospective/04_campeche/"
+    print("Step 5: Descargando datos climáticos para colima...")
+    path_data = "/Users/fdzul/Library/CloudStorage/Dropbox/dataset/nasa_power/climex_download/data/prospective/06_colima/"
     
     clim = climex.download_nasa_power_data(
         df=x,
@@ -57,7 +57,7 @@ def main():
     print("\nÚltimas filas:")
     print(clim.tail())
     
-    output_file = '/Users/fdzul/Library/CloudStorage/Dropbox/dataset/nasa_power/climex_download/data/prospective_dataclim_04_campeche.csv'
+    output_file = '/Users/fdzul/Library/CloudStorage/Dropbox/dataset/nasa_power/climex_download/data/prospective_dataclim_06_colima.csv'
     clim.to_csv(output_file)
     print(f"\n✓ Datos guardados en: {output_file}")
 

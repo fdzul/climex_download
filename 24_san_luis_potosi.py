@@ -7,7 +7,7 @@ import multiprocessing
 import sys
 
 def main():
-    """Función principal para descargar datos climáticos de NASA POWER para Campeche"""
+    """Función principal para descargar datos climáticos de NASA POWER para Estado de San Luis Potosí"""
     
     # Configurar multiprocessing para macOS
     if sys.platform == 'darwin':
@@ -16,7 +16,7 @@ def main():
         except RuntimeError:
             pass  # Ya fue configurado
     
-    print("Step 1: Cargando dataset de centroides de México...")
+    print("Step 1: Cargando dataset de centroides de...")
     path_centroid = "/Users/fdzul/Library/CloudStorage/Dropbox/dataset/nasa_power/climex_download/mexico_mpo_centroid.csv"
     dtype_dic = {'CVEGEO': str}
     x = pd.read_csv(path_centroid, dtype=dtype_dic)
@@ -25,15 +25,15 @@ def main():
     x['edo'] = x['CVEGEO'].astype(str).str[:-3]
     print(f"Total de registros: {len(x)}")
     
-    print("Step 3: Extrayendo estado de Campeche...")
-    x = x[(x['edo'] == "04")]
-    print(f"Registros para Campeche: {len(x)}")
+    print("Step 3: Extrayendo estado de...")
+    x = x[(x['edo'] == "24")]
+    print(f"Registros para : {len(x)}")
     
     print("Step 4: Limpiando datos...")
     x = x.drop(["edo"], axis=1)
     
-    print("Step 5: Descargando datos climáticos para Aguascalientes...")
-    path_data = "/Users/fdzul/Library/CloudStorage/Dropbox/dataset/nasa_power/climex_download/data/prospective/04_campeche/"
+    print("Step 5: Descargando datos climáticos para...")
+    path_data = "/Users/fdzul/Library/CloudStorage/Dropbox/dataset/nasa_power/climex_download/data/prospective/24_san_luis_potosi/"
     
     clim = climex.download_nasa_power_data(
         df=x,
@@ -57,7 +57,7 @@ def main():
     print("\nÚltimas filas:")
     print(clim.tail())
     
-    output_file = '/Users/fdzul/Library/CloudStorage/Dropbox/dataset/nasa_power/climex_download/data/prospective_dataclim_04_campeche.csv'
+    output_file = '/Users/fdzul/Library/CloudStorage/Dropbox/dataset/nasa_power/climex_download/data/prospective_dataclim_24_san_luis_potosi.csv'
     clim.to_csv(output_file)
     print(f"\n✓ Datos guardados en: {output_file}")
 

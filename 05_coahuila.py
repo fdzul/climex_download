@@ -25,14 +25,14 @@ def main():
     x['edo'] = x['CVEGEO'].astype(str).str[:-3]
     print(f"Total de registros: {len(x)}")
     
-    print("Step 3: Extrayendo estado de Aguascalientes...")
+    print("Step 3: Extrayendo estado de Coahuila...")
     x = x[(x['edo'] == "05")]
-    print(f"Registros para Aguascalientes: {len(x)}")
+    print(f"Registros para Coahuila: {len(x)}")
     
     print("Step 4: Limpiando datos...")
     x = x.drop(["edo"], axis=1)
     
-    print("Step 5: Descargando datos climáticos para Aguascalientes...")
+    print("Step 5: Descargando datos climáticos para Coahuila...")
     path_data = "/Users/fdzul/Library/CloudStorage/Dropbox/dataset/nasa_power/climex_download/data/prospective/05_coahuila/"
     
     clim = climex.download_nasa_power_data(
